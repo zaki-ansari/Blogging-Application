@@ -1,8 +1,10 @@
 package com.masai.exception;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class ResourceNotFoundException extends RuntimeException{
 	
 	String resourceName;
