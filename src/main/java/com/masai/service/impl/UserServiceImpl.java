@@ -1,9 +1,11 @@
 package com.masai.service.impl;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.masai.entities.User;
 import com.masai.exception.ResourceNotFoundException;
@@ -11,6 +13,7 @@ import com.masai.payload.UserDto;
 import com.masai.repository.UserRepo;
 import com.masai.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
