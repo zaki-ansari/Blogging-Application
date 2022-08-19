@@ -23,7 +23,7 @@ public class UserDto {
 	
 	@NotEmpty
 	@Size(min=3, max=10,message = "Password must be min of 3 chars and max of 10 chars !!")
-	@Pattern(regexp = "[0-9]")
+	@Pattern(regexp = "[0-9]{3,10}")
 	private String password;
 	
 	@Email(message = "Email address is not valid !!")
