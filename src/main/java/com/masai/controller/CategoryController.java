@@ -2,6 +2,8 @@ package com.masai.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +29,7 @@ public class CategoryController {
 
 	//post - create
 	@PostMapping("/")
-	public ResponseEntity<CategoryDto> createCategoryHandler(@RequestBody CategoryDto categoryDto)
+	public ResponseEntity<CategoryDto> createCategoryHandler(@Valid @RequestBody CategoryDto categoryDto)
 	{
 		CategoryDto createCategory = categoryService.createCategory(categoryDto);
 		
@@ -36,7 +38,7 @@ public class CategoryController {
 	
 	//put - update
 	@PutMapping("/{categoryId}")
-	public ResponseEntity<CategoryDto> updateCategoryHandler(@PathVariable("categoryId") Integer id,@RequestBody CategoryDto categoryDto)
+	public ResponseEntity<CategoryDto> updateCategoryHandler(@Valid @PathVariable("categoryId") Integer id,@RequestBody CategoryDto categoryDto)
 	{
 		CategoryDto updatedCategory = categoryService.updateCategory(categoryDto, id);
 		
