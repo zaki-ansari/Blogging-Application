@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.masai.entities.Category;
@@ -62,6 +63,7 @@ public class PostServiceImpl implements PostService {
 		
 		post.setTitle(postDto.getTitle());
 		post.setContent(postDto.getContent());
+		post.setImageName(postDto.getImageName());
 		
 		Post updatedPost = postRepo.save(post);
 		return modelMapper.map(updatedPost, PostDto.class);
@@ -113,13 +115,26 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<PostDto> searchPosts(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		
+//		List<Post>postsbyquery = postRepo.searchByTitle("%"+keyword+"%");
+		List<Post>posts = postRepo.findByTitleContaining(keyword);
+		
+		List<PostDto>postDtos = posts.stream().map((post)->modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		
+		return postDtos;
 	}
 
 	@Override
-	public PostResponse getAllPostsWithPagination(Integer pageSize, Integer pageNumber) {
-		Pageable p = PageRequest.of(pageNumber,pageSize);
+	public PostResponse getAllPostsWithPagination(Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
+		Sort sort =null;
+		if(sortDir.equalsIgnoreCase("asc"))
+		{
+			sort = Sort.by(sortBy).ascending();
+		}
+		else {
+			sort = Sort.by(sortBy).descending();
+		}
+		Pageable p = PageRequest.of(pageNumber, pageSize, sort);
 		Page<Post> pagePost = postRepo.findAll(p);
 		
 		List<Post>posts = pagePost.getContent();

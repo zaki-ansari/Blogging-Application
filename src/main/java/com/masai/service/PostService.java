@@ -32,7 +32,7 @@ public interface PostService {
 	List<PostDto> searchPosts(String keyword);
 	
 	//get all posts with pagesize and pagenumber
-	PostResponse getAllPostsWithPagination(Integer pageSize, Integer pageNumber);
+	PostResponse getAllPostsWithPagination(Integer pageNumber, Integer pageSize,String sortBy, String sort);
 	
 	
 	
