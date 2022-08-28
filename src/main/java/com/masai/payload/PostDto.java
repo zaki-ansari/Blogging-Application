@@ -1,9 +1,7 @@
 package com.masai.payload;
 
 import java.util.Date;
-
-import com.masai.entities.Category;
-import com.masai.entities.User;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +25,8 @@ public class PostDto {
 	private CategoryDto category;
 	
 	private UserDto user;
+	
+	private List<CommentDto> comments;
 	
 	
 }

@@ -1,6 +1,8 @@
 package com.masai.entities;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,6 +38,9 @@ public class User {
 		
 		@OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 		private List<Post> posts;
+		
+//		@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//		private Set<Comment> comments = new HashSet<>();
 		
 		
 }
